@@ -1,0 +1,39 @@
+/*
+ * button.c
+ *
+ *  Created on: Nov 7, 2023
+ *      Author: DELL
+ */
+
+#include "button.h"
+
+uint8_t bFlag = 0;
+uint8_t bState[3] = {SET, SET, SET};
+
+uint8_t checkState()
+{
+	if (bState[0] == RESET && bState[1] == RESET && bState[2] == RESET)
+		return RESET;
+	return SET;
+}
+
+uint8_t isPressed()
+{
+	if (bFlag == 1)
+	{
+		bFlag = 0;
+		return 1;
+	}
+	return 0;
+}
+
+void getKey()
+{
+	bState[0] = bState[1];
+	bState[1] = bState[2];
+	bState[2] = HAL_GPIO_ReadPin(BUTTON_GPIO_Port, BUTTON_Pin);
+	if (!checkState())
+	{
+		bFlag = 1;
+	}
+}

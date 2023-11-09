@@ -1,0 +1,37 @@
+23:58:03 **** Incremental Build of configuration Debug for project test_project ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/button.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/button.d" -MT"Core/Src/button.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/button.o"
+../Core/Src/button.c: In function 'checkState':
+../Core/Src/button.c:17:16: warning: comparison between 'GPIO_PinState' {aka 'enum <anonymous>'} and 'enum <anonymous>' [-Wenum-compare]
+   17 |  if (bState[1] == RESET && bState[2] == RESET && bState[3] == RESET)
+      |                ^~
+../Core/Src/button.c:17:38: warning: comparison between 'GPIO_PinState' {aka 'enum <anonymous>'} and 'enum <anonymous>' [-Wenum-compare]
+   17 |  if (bState[1] == RESET && bState[2] == RESET && bState[3] == RESET)
+      |                                      ^~
+../Core/Src/button.c:17:60: warning: comparison between 'GPIO_PinState' {aka 'enum <anonymous>'} and 'enum <anonymous>' [-Wenum-compare]
+   17 |  if (bState[1] == RESET && bState[2] == RESET && bState[3] == RESET)
+      |                                                            ^~
+../Core/Src/button.c: In function 'getKey':
+../Core/Src/button.c:39:17: warning: comparison between 'GPIO_PinState' {aka 'enum <anonymous>'} and 'enum <anonymous>' [-Wenum-compare]
+   39 |   if (bState[0] == SET)
+      |                 ^~
+arm-none-eabi-gcc -o "test_project.elf" @"objects.list"   -mcpu=cortex-m3 -T"E:\Microcontroller\test_microcontroller\test_project\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="test_project.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: test_project.elf
+ 
+arm-none-eabi-size   test_project.elf 
+arm-none-eabi-objdump -h -S  test_project.elf  > "test_project.list"
+arm-none-eabi-objcopy  -O ihex  test_project.elf  "test_project.hex"
+   text	   data	    bss	    dec	    hex	filename
+   7296	     28	   1684	   9008	   2330	test_project.elf
+arm-none-eabi-objcopy  -O binary  test_project.elf  "test_project.bin"
+Finished building: default.size.stdout
+ 
+Finished building: test_project.hex
+Finished building: test_project.bin
+ 
+ 
+Finished building: test_project.list
+ 
+
+23:58:03 Build Finished. 0 errors, 4 warnings. (took 603ms)
+
